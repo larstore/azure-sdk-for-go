@@ -56,24 +56,6 @@ func logCredentialError(credName string, err error) {
 	log.Writef(EventAuthentication, "Azure Identity => ERROR in %s: %s", credName, err.Error())
 }
 
-func logMSIEnv(msi msiType) {
-	if !log.Should(EventAuthentication) {
-		return
-	}
-	var msg string
-	switch msi {
-	case msiTypeIMDS:
-		msg = "Azure Identity => Managed Identity environment: IMDS"
-	case msiTypeAppServiceV20170901, msiTypeCloudShell, msiTypeAppServiceV20190801:
-		msg = "Azure Identity => Managed Identity environment: MSI_ENDPOINT"
-	case msiTypeUnavailable:
-		msg = "Azure Identity => Managed Identity environment: Unavailable"
-	default:
-		msg = "Azure Identity => Managed Identity environment: Unknown"
-	}
-	log.Write(EventAuthentication, msg)
-}
-
 func addGetTokenFailureLogs(credName string, err error, includeStack bool) {
 	if !log.Should(EventAuthentication) {
 		return
