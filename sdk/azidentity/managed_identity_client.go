@@ -24,15 +24,12 @@ import (
 )
 
 const (
-	headerMetadata = "Metadata"
-	imdsEndpoint   = "http://169.254.169.254/metadata/identity/oauth2/token"
-)
-
-const (
 	arcIMDSEndpoint          = "IMDS_ENDPOINT"
 	identityEndpoint         = "IDENTITY_ENDPOINT"
 	identityHeader           = "IDENTITY_HEADER"
 	identityServerThumbprint = "IDENTITY_SERVER_THUMBPRINT"
+	headerMetadata           = "Metadata"
+	imdsEndpoint             = "http://169.254.169.254/metadata/identity/oauth2/token"
 	msiEndpoint              = "MSI_ENDPOINT"
 	msiSecret                = "MSI_SECRET"
 	imdsAPIVersion           = "2018-02-01"
@@ -46,11 +43,11 @@ const (
 type msiType int
 
 const (
-	msiTypeIMDS msiType = iota
-	msiTypeAppServiceV20170901
-	msiTypeCloudShell
+	msiTypeAppServiceV20170901 msiType = iota
 	msiTypeAppServiceV20190801
 	msiTypeAzureArc
+	msiTypeCloudShell
+	msiTypeIMDS
 	msiTypeServiceFabric
 )
 
