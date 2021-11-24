@@ -6,6 +6,7 @@ package azidentity
 import (
 	"context"
 	"errors"
+	"time"
 
 	"github.com/Azure/azure-sdk-for-go/sdk/azcore"
 	"github.com/Azure/azure-sdk-for-go/sdk/azcore/policy"
@@ -55,6 +56,7 @@ func NewDefaultAzureCredential(options *DefaultAzureCredentialOptions) (*Default
 
 	msiCred, err := NewManagedIdentityCredential(&ManagedIdentityCredentialOptions{ClientOptions: options.ClientOptions})
 	if err == nil {
+		msiCred.client.imdsTimeout = time.Second
 		creds = append(creds, msiCred)
 	} else {
 		errMsg += err.Error()
