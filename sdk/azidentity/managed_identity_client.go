@@ -58,7 +58,7 @@ type managedIdentityClient struct {
 	msiType     msiType
 	endpoint    string
 	id          ManagedIDKind
-	imdsTimeout time.Duration
+	imdsTimeout time.Duration // used by DefaultAzureCredential to set a short timeout on IMDS requests
 }
 
 type wrappedNumber json.Number
