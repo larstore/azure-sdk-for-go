@@ -19,30 +19,6 @@ import (
 // used when obtaining credentials and the type of credential used.
 const EventAuthentication log.Event = "Authentication"
 
-// log environment variables that can be used for credential types
-func logEnvVars() {
-	if !log.Should(EventAuthentication) {
-		return
-	}
-	// Log available environment variables
-	envVars := []string{}
-	if envCheck := os.Getenv("AZURE_TENANT_ID"); len(envCheck) > 0 {
-		envVars = append(envVars, "AZURE_TENANT_ID")
-	}
-	if envCheck := os.Getenv("AZURE_CLIENT_ID"); len(envCheck) > 0 {
-		envVars = append(envVars, "AZURE_CLIENT_ID")
-	}
-	if envCheck := os.Getenv("AZURE_CLIENT_SECRET"); len(envCheck) > 0 {
-		envVars = append(envVars, "AZURE_CLIENT_SECRET")
-	}
-	if envCheck := os.Getenv(azureAuthorityHost); len(envCheck) > 0 {
-		envVars = append(envVars, azureAuthorityHost)
-	}
-	if len(envVars) > 0 {
-		log.Writef(EventAuthentication, "Azure Identity => Found the following environment variables:\n\t%s", strings.Join(envVars, ", "))
-	}
-}
-
 func logGetTokenSuccess(cred azcore.TokenCredential, opts policy.TokenRequestOptions) {
 	if !log.Should(EventAuthentication) {
 		return
