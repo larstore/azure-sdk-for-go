@@ -5,7 +5,6 @@ package azidentity
 
 import (
 	"fmt"
-	"os"
 	"strings"
 
 	"github.com/Azure/azure-sdk-for-go/sdk/azcore"
